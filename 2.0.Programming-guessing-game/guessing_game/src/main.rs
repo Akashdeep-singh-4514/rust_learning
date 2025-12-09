@@ -20,7 +20,13 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
 
-        let guess: u32 = match guess.trim().parse().expect("only numbers are allowed!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("That was not a valid number. Please try again.");
+                continue;
+            }
+        };
         
 
         match guess.cmp(&secret_number) {
