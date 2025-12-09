@@ -27,13 +27,18 @@ fn main() {
     println!("User1 sign_in_count: {}", user1.sign_in_count);
     println!("User1 active: {}", user1.active);
 
+    let mut user2 = User {
+        username: String::from("John"),
+        email: String::from("john@example.com"),
+        sign_in_count: 1,
+        active: true,
+    };
     println!("=================befor USER 2 UPDATE EMAIL=================");
     println!("User2 debug print: {:?}", user2);
 
-    println!("=================after update email: {}", user2.email);
+    println!("=================after update USER 2=======");
     user2.email = String::from("john@newexample.com");
     println!("User2 debug print: {:?}", user2);
-
 
 
 }
