@@ -45,5 +45,25 @@ fn main() {
     let heart_eyed_cat = '😻';
     println!("character 3 heart_eyed_cat: {}",heart_eyed_cat);
 
+    println!("=================STRING=================");
+    let string1:String="hello".to_string();
+    println!("string 1 {}",string1);
+    let string2:String="world".to_string();
+    println!("string 2 {}",string2);
+    let string3:String=format!("{}-{}!",string1,string2);
+    println!("string 3 {}",string3);
+
+    println!("=================TUPLE=================");
+    let tuple1:(i32,f32,char,String)=(1,2.0,'a',"hello".to_string());
+    println!("tuple 1 debug print {:?}",tuple1);
+    println!("tuple 1 pretty print {:#?}",tuple1);
+    println!("first element of tuple1 is {}",tuple1.0);
+
+    let (x,y,z,w)=tuple1;
+    println!("x: {}",x);
+    println!("y: {}",y);
+    println!("z: {}",z);
+    println!("w: {}",w);
+
 
 }
