@@ -1,3 +1,11 @@
+#[derive(Debug)]
+struct UserGlobal {
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
+}
+
 fn main() {
     #[derive(Debug)]
     struct User {
@@ -40,6 +48,17 @@ fn main() {
     };
     println!("User2 debug print: {:?}", user3);
 
+    let user4 = build_user(String::from("user4@example.com"), String::from("user4"));
+    println!("User4 debug print: {:?}", user4);
 
 
+}
+
+fn build_user(email: String, username: String) -> UserGlobal {
+    UserGlobal {
+        email,
+        username,
+        sign_in_count: 1,
+        active: true,
+    }
 }
