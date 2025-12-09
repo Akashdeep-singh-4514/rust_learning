@@ -1,1 +1,5 @@
-compile rust file 
+##compile rust file 
+rustc filename
+
+##run file
+./filename
