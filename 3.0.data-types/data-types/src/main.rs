@@ -66,4 +66,14 @@ fn main() {
     println!("w: {}",w);
 
 
+    println!("=================ARRAY=================");
+    let array1:[i32;4]=[1,2,3,4];
+    println!("array 1 debug print {:?}",array1);
+    println!("array 1 pretty print {:#?}",array1);
+    println!("first element of array1 is {}",array1[0]);
+    println!("second element of array1 is {}",array1[1]);
+    println!("third element of array1 is {}",array1[2]);
+
+
+
 }
