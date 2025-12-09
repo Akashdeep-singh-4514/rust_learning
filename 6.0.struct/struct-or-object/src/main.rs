@@ -7,13 +7,7 @@ struct UserGlobal {
 }
 
 fn main() {
-    #[derive(Debug)]
-    struct User {
-        username: String,
-        email: String,
-        sign_in_count: u64,
-        active: bool,
-    }
+    type User = UserGlobal;
     let user1 = User {
         username: String::from("user1"),
         email: String::from("user1@example.com"),
