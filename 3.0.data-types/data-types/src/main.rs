@@ -53,6 +53,8 @@ fn main() {
     let string3:String=format!("{}-{}!",string1,string2);
     println!("string 3 {}",string3);
 
+    println!("substring of string3 is {}", &string3[0..6]);
+
     println!("=================TUPLE=================");
     let tuple1:(i32,f32,char,String)=(1,2.0,'a',"hello".to_string());
     println!("tuple 1 debug print {:?}",tuple1);
