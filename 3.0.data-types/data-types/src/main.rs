@@ -33,4 +33,17 @@ fn main() {
     println!("remainder of 43 and 5 is {}",remainder);
 
 
+    println!("=================BOOLEAN=================");
+    let boolean1:bool=true;
+    println!("boolean 1 {}",boolean1);
+
+    println!("=================CHARACTER=================");
+    let c = 'z';
+    println!("character 1 c: {}",c);
+    let z: char = 'ℤ'; // with explicit type annotation
+    println!("character 2 z: {}",z);
+    let heart_eyed_cat = '😻';
+    println!("character 3 heart_eyed_cat: {}",heart_eyed_cat);
+
+
 }
