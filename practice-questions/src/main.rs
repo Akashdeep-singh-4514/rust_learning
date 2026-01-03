@@ -1,11 +1,12 @@
 mod questions;
 #[allow(unused)]
-use questions::{calculator, frequency, number_guessing, say_hello, todo_cli};
+use questions::{calculator, frequency, number_guessing, say_hello, string_utilities, todo_cli};
 
 fn main() {
     // say_hello::hello()
     // calculator::start_calculator();
     // number_guessing::start_game();
     // frequency::run()
-    todo_cli::run()
+    // todo_cli::run();
+    string_utilities::run();
 }

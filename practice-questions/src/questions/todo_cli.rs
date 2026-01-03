@@ -71,12 +71,12 @@ fn help() {
 fn start() {
     println!(">> start using todo-cli enter 'help' for guide")
 }
-
+#[allow(unused)]
 pub fn run() {
     let mut list = List::new();
     start();
     loop {
-        print!("$");
+        print!("$ ");
         let input = inputs::str_inputs().replace("\n", "");
         let words: Vec<&str> = input.split_whitespace().collect();
         if words.len() >= 1 {
@@ -93,7 +93,23 @@ pub fn run() {
                         println!("Added: {}", task);
                     }
                 }
-
+                "get" => {
+                    if words.len() != 2 {
+                        println!("Usage: remove <id>");
+                    } else {
+                        match words[1].parse::<usize>() {
+                            Ok(index) => match list.get(index) {
+                                Some(task) => {
+                                    println!("task at {} is {}", index, task);
+                                }
+                                None => {
+                                    println!("Invalid index");
+                                }
+                            },
+                            Err(_) => println!("Index must be a number"),
+                        }
+                    }
+                }
                 "remove" => {
                     if words.len() != 2 {
                         println!("Usage: remove <id>");
