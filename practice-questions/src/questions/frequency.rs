@@ -1,6 +1,7 @@
 use crate::questions::utils::inputs;
 use std::collections::HashMap;
 
+#[allow(unused)]
 pub fn run() {
     let input = inputs::str_inputs().replace("\n", "");
     let words: Vec<&str> = input.split_whitespace().collect();
