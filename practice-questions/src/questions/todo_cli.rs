@@ -68,13 +68,13 @@ fn help() {
     println!("==========================================================");
 }
 
-fn start() {
+fn intro() {
     println!(">> start using todo-cli enter 'help' for guide")
 }
 #[allow(unused)]
-pub fn run() {
+pub fn start() {
     let mut list = List::new();
-    start();
+    intro();
     loop {
         print!("$ ");
         let input = inputs::str_inputs().replace("\n", "");

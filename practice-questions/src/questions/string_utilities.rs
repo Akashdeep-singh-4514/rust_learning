@@ -12,17 +12,19 @@ fn is_palindrome(input: &str) -> bool {
     return input == reverse(input);
 }
 
-fn to_snake_case(input: &str)->String {
-    let mut snake=String::new();
-    for i in input.chars(){
-        if i.is_uppercase(){
-            snake=format!("{}_{}",snake,i.to_lowercase());
-        }else{
-            snake=format!("{}{}",snake,i);
+fn to_snake_case(input: &str) -> String {
+    let mut snake = String::new();
+    for i in input.chars() {
+        if i.is_uppercase() {
+            snake = format!("{}_{}", snake, i.to_lowercase());
+        } else {
+            snake = format!("{}{}", snake, i);
         }
     }
     snake
 }
+
+#[allow(unused)]
 pub fn run() {
     let input = inputs::str_inputs().replace("\n", "");
     let rev = reverse(&input);
