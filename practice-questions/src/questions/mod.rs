@@ -3,6 +3,7 @@ pub mod frequency;
 pub mod number_guessing;
 pub mod reading_users;
 pub mod remove_duplicates;
+pub mod rotate_list;
 pub mod say_hello;
 pub mod string_utilities;
 pub mod todo_cli;

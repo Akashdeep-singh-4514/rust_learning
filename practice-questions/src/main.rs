@@ -1,8 +1,8 @@
 mod questions;
 #[allow(unused)]
 use questions::{
-    calculator, frequency, number_guessing, reading_users, remove_duplicates, say_hello,
-    string_utilities, todo_cli, valid_paranthesis,
+    calculator, frequency, number_guessing, reading_users, remove_duplicates, rotate_list,
+    say_hello, string_utilities, todo_cli, valid_paranthesis,
 };
 
 fn main() {
@@ -14,5 +14,6 @@ fn main() {
     // string_utilities::run();
     // reading_users::start();
     // valid_paranthesis::run();
-    remove_duplicates::run();
+    // remove_duplicates::run();
+    rotate_list::run();
 }

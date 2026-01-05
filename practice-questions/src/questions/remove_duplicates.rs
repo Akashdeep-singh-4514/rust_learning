@@ -8,6 +8,7 @@ fn num_of_uniques(nums: &Vec<i32>) -> usize {
     return uniques.len();
 }
 
+#[allow(unused)]
 pub fn run() {
     let nums: Vec<i32> = vec![0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
     let result = num_of_uniques(&nums);
