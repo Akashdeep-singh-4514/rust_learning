@@ -3,15 +3,12 @@ fn is_opening(c: char) -> bool {
 }
 
 fn is_matched(open: char, close: char) -> bool {
-    matches!(
-        (open, close),
-        ('(', ')') | ('[', ']') | ('{', '}')
-    )
+    matches!((open, close), ('(', ')') | ('[', ']') | ('{', '}'))
 }
 
-fn check_paranthesis(input:&str)->bool{
+fn check_paranthesis(input: &str) -> bool {
     let mut stack: Vec<char> = Vec::new();
-    for c in input.chars(){
+    for c in input.chars() {
         if is_opening(c) {
             stack.push(c);
         } else {
@@ -25,9 +22,9 @@ fn check_paranthesis(input:&str)->bool{
     stack.is_empty()
 }
 
+#[allow(unused)]
 pub fn run() {
     let test_string = "([)]";
     let result = check_paranthesis(&test_string);
-    println!("Result {}",result);
+    println!("Result {}", result);
 }
-
