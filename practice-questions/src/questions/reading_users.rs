@@ -1,12 +1,13 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+use serde_json;
 use std::error::Error;
 use std::fs;
 
 use crate::questions::utils::inputs;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 struct User {
-    id: u32,
+    id: usize,
     name: String,
     username: String,
     email: String,
@@ -16,7 +17,7 @@ struct User {
     company: Company,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 struct Address {
     street: String,
     suite: String,
@@ -25,13 +26,13 @@ struct Address {
     geo: Geo,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 struct Geo {
     lat: String,
     lng: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 struct Company {
     name: String,
     #[serde(rename = "catchPhrase")]
@@ -39,7 +40,7 @@ struct Company {
     bs: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct Users {
     val: Box<[User]>,
 }
@@ -111,12 +112,45 @@ impl Users {
         }
     }
 
+    fn add(&mut self, user: User) {
+        let mut vec = self.val.to_vec();
+        vec.push(user);
+        self.val = vec.into_boxed_slice();
+    }
+
+    fn remove(&mut self, id: usize) -> bool {
+        let original_len = self.val.len();
+
+        let new_data: Vec<User> = self
+            .val
+            .iter()
+            .cloned()
+            .filter(|user| user.id != id)
+            .collect();
+
+        if new_data.len() == original_len {
+            return false;
+        }
+
+        self.val = new_data.into_boxed_slice();
+        true
+    }
+
     fn read_from_file(file_path: &str) -> Result<Self, Box<dyn Error>> {
         let contents = fs::read_to_string(file_path)?;
         let parsed: Vec<User> = serde_json::from_str(&contents)?;
         Ok(Users {
             val: parsed.into_boxed_slice(),
         })
+    }
+
+    fn write_to_file(&self, file_path: &str) -> Result<(), Box<dyn Error>> {
+        let json = serde_json::to_string_pretty(&self.val)?;
+        fs::write(file_path, json)?;
+        Ok(())
+    }
+    fn next_id(&self) -> usize {
+        self.val.iter().map(|u| u.id).max().unwrap_or(0) + 1
     }
 }
 
@@ -164,9 +198,37 @@ fn parse_list_flags(words: &[&str]) -> (Vec<String>, usize) {
 }
 
 const USERS_FILE_PATH: &str = "src/questions/utils/users.json";
+fn add_handler(users: &mut Users) {
+    let sample_user = User {
+        id: users.next_id(),
+        name: "John Doe".to_string(),
+        username: "johnd".to_string(),
+        email: "john@example.com".to_string(),
+        phone: "999-888-7777".to_string(),
+        website: "johndoe.dev".to_string(),
+        address: Address {
+            street: "Main Street".to_string(),
+            suite: "Apt 101".to_string(),
+            city: "Delhi".to_string(),
+            zipcode: "110001".to_string(),
+            geo: Geo {
+                lat: "28.6139".to_string(),
+                lng: "77.2090".to_string(),
+            },
+        },
+        company: Company {
+            name: "Acme Corp".to_string(),
+            catch_phrase: "We build things".to_string(),
+            bs: "software solutions".to_string(),
+        },
+    };
+
+    users.add(sample_user);
+    println!("Sample user added successfully.");
+}
 
 pub fn start() {
-    let users = match Users::read_from_file(USERS_FILE_PATH) {
+    let mut users = match Users::read_from_file(USERS_FILE_PATH) {
         Ok(u) => u,
         Err(e) => {
             eprintln!("Failed to load users: {}", e);
@@ -195,9 +257,31 @@ pub fn start() {
                 users.list(&fields, count);
             }
 
-            "add" => println!("add"),
-            "remove" => println!("remove"),
-            "write" => println!("write"),
+            "add" => add_handler(&mut users),
+            "remove" => {
+                if words.len() != 2 {
+                    println!("Usage: remove <id>");
+                } else {
+                    match words[1].parse::<usize>() {
+                        Ok(id) => {
+                            if users.remove(id) {
+                                println!("Removed user {}", id);
+                            } else {
+                                println!("Invalid id");
+                            }
+                        }
+                        Err(_) => println!("id must be a number"),
+                    }
+                }
+            }
+            "write" => match users.write_to_file(USERS_FILE_PATH) {
+                Ok(_) => println!("Users saved successfully."),
+                Err(e) => {
+                    eprintln!("Failed to write users file.");
+                    eprintln!("Reason: {}", e);
+                }
+            },
+
             _ => println!("Type 'help' to see guide"),
         }
     }
