@@ -2,6 +2,7 @@ mod questions;
 #[allow(unused)]
 use questions::{
     calculator, frequency, number_guessing, reading_users, say_hello, string_utilities, todo_cli,
+valid_paranthesis
 };
 
 fn main() {
@@ -10,6 +11,7 @@ fn main() {
     // number_guessing::start_game();
     // frequency::run()
     // todo_cli::start();
-    //string_utilities::run();
-    reading_users::start();
+    // string_utilities::run();
+    // reading_users::start();
+    valid_paranthesis::run();
 }

@@ -197,6 +197,7 @@ fn parse_list_flags(words: &[&str]) -> (Vec<String>, usize) {
     (fields, count)
 }
 
+#[allow(unused)]
 const USERS_FILE_PATH: &str = "src/questions/utils/users.json";
 fn add_handler(users: &mut Users) {
     let sample_user = User {
@@ -227,6 +228,7 @@ fn add_handler(users: &mut Users) {
     println!("Sample user added successfully.");
 }
 
+#[allow(unused)]
 pub fn start() {
     let mut users = match Users::read_from_file(USERS_FILE_PATH) {
         Ok(u) => u,
