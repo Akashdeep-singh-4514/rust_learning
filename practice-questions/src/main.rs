@@ -1,8 +1,9 @@
 mod questions;
 #[allow(unused)]
 use questions::{
-    calculator, frequency, number_guessing, reading_users, remove_duplicates, remove_element,
-    rotate_list, say_hello, string_utilities, todo_cli, valid_paranthesis,
+    calculator, frequency, index_of_first_occurence_in_str, number_guessing, reading_users,
+    remove_duplicates, remove_element, rotate_list, say_hello, string_utilities, todo_cli,
+    valid_paranthesis,
 };
 
 fn main() {
@@ -16,5 +17,6 @@ fn main() {
     // valid_paranthesis::run();
     // remove_duplicates::run();
     // rotate_list::run();
-    remove_element::run();
+    // remove_element::run();
+    index_of_first_occurence_in_str::run();
 }
