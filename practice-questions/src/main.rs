@@ -3,7 +3,7 @@ mod questions;
 use questions::{
     calculator, frequency, index_of_first_occurence_in_str, number_guessing, reading_users,
     remove_duplicates, remove_element, rotate_list, say_hello, string_utilities, todo_cli,
-    valid_paranthesis,
+    valid_palindrome, valid_paranthesis,
 };
 
 fn main() {
@@ -18,5 +18,6 @@ fn main() {
     // remove_duplicates::run();
     // rotate_list::run();
     // remove_element::run();
-    index_of_first_occurence_in_str::run();
+    // index_of_first_occurence_in_str::run();
+    valid_palindrome::run();
 }

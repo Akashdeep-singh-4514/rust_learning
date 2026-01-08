@@ -10,4 +10,5 @@ pub mod say_hello;
 pub mod string_utilities;
 pub mod todo_cli;
 pub mod utils;
+pub mod valid_palindrome;
 pub mod valid_paranthesis;
