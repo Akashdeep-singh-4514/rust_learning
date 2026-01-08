@@ -1,5 +1,6 @@
 pub mod calculator;
 pub mod frequency;
+pub mod happy_number;
 pub mod index_of_first_occurence_in_str;
 pub mod number_guessing;
 pub mod reading_users;
